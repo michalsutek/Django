@@ -21,3 +21,15 @@ def rozvrh(request):
         {"cislo": 1, "predmet": "Anglický jazyk"},
     ]
     return render(request, "ulohy/rozvrh.html", {"den": "Pondelok", "hodiny": hodiny})
+
+def pozdrav(request):
+    meno = request.GET.get("meno","") # .get nájde a vráti hodnotu prvku s indexom(kľúčom) meno, ak ho nenájde vloží prázdy string
+    return render(request, "ulohy/pozdrav.html", {"meno": meno})
+
+def sucet(request):
+    vysledok = None
+    if request.method == "POST":
+        a = int(request.POST["a"])
+        b = int(request.POST["b"])
+        vysledok = a + b
+    return render(request, "ulohy/sucet.html", {"vysledok": vysledok})
