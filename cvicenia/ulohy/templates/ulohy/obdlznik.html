@@ -1,0 +1,11 @@
+<h1>Obdĺžnik</h1>
+<form method="post">
+  {% csrf_token %}
+  a = <input type="number" step="any" name="a" value="{{ a|stringformat:'s' }}" required>
+  b = <input type="number" step="any" name="b" value="{{ b|stringformat:'s' }}" required>
+  <button>Vypočítať</button>
+</form>
+
+{% if obsah %}
+  <p>Obsah: {{ obsah|floatformat:2 }}, obvod: {{ obvod|floatformat:2 }}</p>
+{% endif %}

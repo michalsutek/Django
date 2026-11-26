@@ -1,0 +1,17 @@
+<h1>Obchod</h1>
+<form method="get">
+  Max. cena: <input type="number" step="any" name="max">
+  <button>Filtrovať</button>
+</form>
+
+<table border="1">
+  <tr><th>Produkt</th><th>Cena</th></tr>
+  {% for p in produkty %}
+    {% if max_cena is None or p.cena <= max_cena %}
+      <tr>
+        <td>{{ p.nazov }}</td>
+        <td>{% if p.cena < 5 %}<b>{{ p.cena|floatformat:2 }} €</b>{% else %}{{ p.cena|floatformat:2 }} €{% endif %}</td>
+      </tr>
+    {% endif %}
+  {% endfor %}
+</table>

@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.shortcuts import render, HttpResponse
 
 def ahoj(request):
@@ -33,3 +35,20 @@ def sucet(request):
         b = int(request.POST["b"])
         vysledok = a + b
     return render(request, "ulohy/sucet.html", {"vysledok": vysledok})
+
+
+def obdlznik(request):
+    kontext = {}
+    if request.method == "POST":
+        a = float(request.POST["a"])
+        b = float(request.POST["b"])
+        kontext = {"a": a, "b": b, "obsah": a * b, "obvod": 2 * (a + b)}
+    return render(request, "ulohy/obdlznik.html", kontext)
+
+
+def vek(request):
+    roky = None
+    if request.method == "POST":
+        rok = int(request.POST["rok"])
+        roky = date.today().year - rok
+    return render(request, "ulohy/vek.html", {"roky": roky})

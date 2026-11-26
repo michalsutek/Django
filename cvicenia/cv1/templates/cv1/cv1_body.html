@@ -1,0 +1,11 @@
+<h1>Body na známku</h1>
+<form method="post">
+  {% csrf_token %}
+  Body: <input type="number" step="any" name="body" required>
+  z <input type="number" step="any" name="maximum" required>
+  <button>Vypočítať</button>
+</form>
+
+{% if znamka %}
+  <p>{{ body|floatformat }} z {{ maximum|floatformat }} bodov = {{ percenta|floatformat:1 }} % → známka {{ znamka }}</p>
+{% endif %}
